@@ -1,0 +1,23 @@
+{
+  "name": "st-render",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^2.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viciqloud/st-render.git"
+  },
+  "author": "Adrian Barwicki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viciqloud/st-render/issues"
+  },
+  "homepage": "https://github.com/viciqloud/st-render#readme"
+}
