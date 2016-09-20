@@ -17,15 +17,14 @@ function RendererFactory(templateDir,layoutPath){
     
     return execute;
     
-    function execute(bodyPath){
+    function execute(bodyPath,bodyFill){
         console.time("[st.render]");
         var layout = getLayout(layoutPath);
         var body =  getBody(bodyPath);
+        body = ejs.render(body,bodyFill);
         var compiled = render(body,layout);
         console.timeEnd("[st.render]");
         return compiled;
-        
-        
     }
     function getLayout(layoutPath){
         console.log(`[st.render]: Getting layout from ${layoutPath}`);
@@ -35,12 +34,11 @@ function RendererFactory(templateDir,layoutPath){
 
     function getBody(bodyPath){
         console.log(`[st.render]: Getting body from ${bodyPath}`);
-        var body = fs.readFileSync(templateDir+bodyPath+".ejs",'utf8');
+        var body = fs.readFileSync(templateDir+"/"+bodyPath+".ejs",'utf8');
         return body;
     }
 
     function render(body,layout){
-        
         var compiled = ejs.render(layout,{body : body});
         return compiled;
     }  
