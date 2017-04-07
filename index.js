@@ -2,11 +2,7 @@ var ejs = require("ejs");
 var fs = require("fs");
 
 Object.prototype.extend = function(obj) {
-   for (var i in obj) {
-      if (obj.hasOwnProperty(i)) {
-         this[i] = obj[i];
-      }
-   }
+   
 };
 
 if (module.parent) {
@@ -46,6 +42,12 @@ function RendererFactory(templateDir, layoutPath) {
     }
 
     function render(body, layout, defaultData) {
+        for (var i in defaultData) {
+            if (defaultData.hasOwnProperty(i)) {
+                body[i] = body[i] || defaultData[i];
+            }
+        }
+
         var compiled = ejs.render(layout, { body : Object.extend(body, defaultData) });
 
         return compiled;
