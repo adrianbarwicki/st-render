@@ -48,7 +48,7 @@ function RendererFactory(templateDir, layoutPath) {
             }
         }
 
-        var compiled = ejs.render(layout, { body : Object.extend(body, defaultData) });
+        var compiled = ejs.render(layout, { body: body });
 
         return compiled;
     }  
