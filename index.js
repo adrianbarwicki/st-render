@@ -1,10 +1,6 @@
 var ejs = require("ejs");
 var fs = require("fs");
 
-Object.prototype.extend = function(obj) {
-   
-};
-
 if (module.parent) {
     module.exports = RendererFactory;
 } else {
