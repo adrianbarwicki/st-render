@@ -1,6 +1,14 @@
 var ejs = require("ejs");
 var fs = require("fs");
 
+Object.prototype.extend = function(obj) {
+   for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+         this[i] = obj[i];
+      }
+   }
+};
+
 if (module.parent) {
     module.exports = RendererFactory;
 } else {
