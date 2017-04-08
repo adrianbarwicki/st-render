@@ -16,18 +16,25 @@ if (module.parent) {
 function RendererFactory(templateDir, layoutPath) {
     return execute;
     
-    function execute(bodyPath,bodyFill) {
+    function execute(bodyPath, bodyFill) {
         console.time("[st.render]");
+
         var layout = getLayout(layoutPath);
         var body =  getBody(bodyPath);
-        body = ejs.render(body,bodyFill);
-        var compiled = render(body,layout);
+        
+        body = ejs.render(body, bodyFill);
+        
+        var compiled = render(body, layout, bodyFill.config || {});
+
         console.timeEnd("[st.render]");
+
         return compiled;
     }
+
     function getLayout(layoutPath) {
         console.log(`[st.render]: Getting layout from ${layoutPath}`);
         var layout = fs.readFileSync(layoutPath,'utf8');
+
         return layout;
     }
 
@@ -37,18 +44,12 @@ function RendererFactory(templateDir, layoutPath) {
         return body;
     }
 
-    function render(body, layout, defaultData) {
-        for (var i in defaultData) {
-            if (defaultData.hasOwnProperty(i)) {
-                body[i] = body[i] || defaultData[i];
-            }
-        }
-
-        var compiled = ejs.render(layout, { body: body });
+    function render(body, layout, config) {
+        var compiled = ejs.render(layout, { body: body, config: config });
 
         return compiled;
-    }  
-}    
+    }
+}
     
  function writeToDirectory (compiled, directory, name) {
         var writePath = directory+"/"+name+".html";
